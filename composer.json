@@ -13,7 +13,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "WalletSDK\\": "src/"
+            "WalletSDK\\": "vendor/Samuelodu1/wallet-sdk/src/"
         }
     },
     "license": "MIT",
