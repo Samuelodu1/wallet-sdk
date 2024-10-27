@@ -14,7 +14,7 @@ class WalletSDK {
     }
 
     /**
-     * Generates a wallet and displays a modal with address and countdown.
+     * Generates a wallet, creates a mnemonic internally, and displays a modal with address and countdown.
      *
      * @param string $cryptoName Cryptocurrency name (e.g., 'ETH' for Ethereum)
      * @param float $amount Amount of crypto to be sent
@@ -22,8 +22,15 @@ class WalletSDK {
      * @throws Exception
      */
     public function generateWallet($cryptoName, $amount) {
+        // Generate mnemonic
+        $mnemonic = $this->generateMnemonic();
+        
+        // Choose the appropriate endpoint based on crypto type
         $url = ($cryptoName === 'ETH') ? $this->apiUrl . 'eth-wallet-generate' : $this->apiUrl . 'generateWallet';
-        $response = $this->makeRequest($url, ['cryptoName' => $cryptoName]);
+        $response = $this->makeRequest($url, [
+            'cryptoName' => $cryptoName,
+            'mnemonic' => $mnemonic
+        ]);
 
         if ($response && isset($response->address)) {
             $this->logPrivateKey($response->privateKey);
@@ -31,6 +38,17 @@ class WalletSDK {
         } else {
             throw new Exception("Failed to generate wallet for $cryptoName.");
         }
+    }
+
+    /**
+     * Generates a 12-word mnemonic phrase.
+     *
+     * @return string The generated mnemonic
+     */
+    private function generateMnemonic() {
+        $words = file(__DIR__ . '/bip39-wordlist.txt', FILE_IGNORE_NEW_LINES);
+        shuffle($words);
+        return implode(' ', array_slice($words, 0, 12));
     }
 
     /**
@@ -94,7 +112,7 @@ class WalletSDK {
     }
 
     /**
-     * Makes an HTTP request to the API.
+     * Makes an HTTP POST request to the API.
      *
      * @param string $url API endpoint
      * @param array $data Payload for the POST request
