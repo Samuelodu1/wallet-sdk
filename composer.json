@@ -1,5 +1,5 @@
 {
-    "name": "Samuelodu1/wallet-sdk",
+    "name": "wallet-sdk",
     "description": "A PHP SDK for generating cryptocurrency wallets and handling payments.",
     "type": "library",
     "require": {
@@ -22,5 +22,7 @@
             "name": "Samuel",
             "email": "istackwebs@gmail.com"
         }
-    ]
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
