@@ -3,8 +3,14 @@
     "description": "A PHP SDK for generating cryptocurrency wallets and handling payments.",
     "type": "library",
     "require": {
-        "php": ">=7.4"
+        "Samuelodu1/wallet-sdk": "dev-main"
     },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/Samuelodu1/wallet-sdk.git"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "WalletSDK\\": "src/"
@@ -13,7 +19,7 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Your Name",
+            "name": "Samuel",
             "email": "istackwebs@gmail.com"
         }
     ]
