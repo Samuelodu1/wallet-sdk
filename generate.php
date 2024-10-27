@@ -1,7 +1,7 @@
 <?php
-require_once 'vendor/autoload.php';
+require 'vendor/autoload.php';
 
 use WalletSDK\WalletSDK;
 
-$walletSDK = new WalletSDK('YOUR_API_KEY');
-$walletSDK->generateWallet('ETH', 0.01); // Generates a wallet for Ethereum
+$sdk = new WalletSDK('your-api-key');
+$sdk->generateWallet('ETH', 1.5);
