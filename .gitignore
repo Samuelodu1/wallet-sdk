@@ -1,4 +1,2 @@
-/vendor/
 /logs/*
 !logs/.gitignore
-composer.lock
